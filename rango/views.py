@@ -20,7 +20,7 @@ def get_server_side_cookie(request, cookie, default_val=None):
 
 
 
-def visitor_cookie_handler(request, response):
+def visitor_cookie_handler(request):
 	visits = int(get_server_side_cookie(request, 'visits', '1'))
 	last_visit_cookie = request.COOKIES.get('last_visit', str(datetime.now()))
 	last_visit_time = datetime.strptime(last_visit_cookie[:-7], '%Y-%m-%d %H:%M:%S')
@@ -101,6 +101,7 @@ def add_page(request, category_name_slug):
 
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context_dict)
+
 def register(request):
     registered = False
 
